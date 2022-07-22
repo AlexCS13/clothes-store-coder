@@ -1,0 +1,19 @@
+.navbar{
+    background-color: rgb(85, 122, 121);
+	height: 60px;
+	width: auto;
+}
+
+ul{
+    color: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: brown;
+}
+
+li {
+	list-style-type: none;
+    font-size: 30px;
+    color: aquamarine;
+}
