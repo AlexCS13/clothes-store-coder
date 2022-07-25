@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./QuantitySelector.css"
 
 export default function QuantitySelector({stock,initial,onAdd}) {
     const [counter, setCounter] = useState(initial);
@@ -16,10 +17,11 @@ export default function QuantitySelector({stock,initial,onAdd}) {
     };
 
     return(
-        <>
+        <div className="quantity-selector">
             <button onClick={add}>+</button>
+            <p>{counter}</p>
             <button onClick={deduct}>-</button>
             <button onClick={()=>onAdd(counter, stock)}>Añadir al carrito</button>
-        </>
+        </div>
     )
 }

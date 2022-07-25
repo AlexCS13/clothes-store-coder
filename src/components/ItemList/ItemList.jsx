@@ -3,6 +3,7 @@ import { useState } from "react"
 import {useParams} from "react-router-dom"
 import { fetchAll } from "../../utils/fetchAll"
 import { fetchByCategory } from "../../utils/fetchByCategory"
+import Filters from "../Filters/Filters"
 import ItemCard from "../ItemCard.jsx/ItemCard"
 import './ItemList.css'
 
@@ -37,6 +38,7 @@ export default function ItemList() {
 
     return(
         <div className="item-list">
+            <Filters/>
             {
                 itemList.map(item => {
                     return(

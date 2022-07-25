@@ -14,14 +14,16 @@ export default function ItemCard({ item }) {
     }
 
     return(
-        <Link to={`/item/${item.id}`}>
-            <div className="item-card">
-                <img src={item.image} alt={item.id}/>
-                <h4>{item.title}</h4>
-                <h5>{item.price}</h5>
-                <QuantitySelector stock={5} initial={1} onAdd={onAdd}/>
-                <h2>{addCart}</h2>
-            </div>
-        </Link>
+        <div className="item-card">
+            <Link to={`/item/${item.id}`}>
+                <div>
+                    <img src={item.image} alt={item.id}/>
+                    <h4>{item.title}</h4>
+                    <h5>{item.price}</h5>
+                    <h2>{addCart}</h2>
+                </div>
+            </Link>
+            <QuantitySelector stock={5} initial={1} onAdd={onAdd}/>
+        </div>
     )
 }

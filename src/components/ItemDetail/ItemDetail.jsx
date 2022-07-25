@@ -11,8 +11,8 @@ export default function ItemDetail() {
 
     useEffect(() => {
         fetchByItemId(itemId)
-        .then(item => setItem(item[0]))
-        .catch(err => console.log(err))
+            .then(item => setItem(item[0]))
+            .catch(err => console.log(err))
     }, [])
 
     return(
