@@ -1,7 +1,8 @@
 import { useState } from "react";
+import ItemCard from "../ItemCard.jsx/ItemCard";
 import "./QuantitySelector.css"
 
-export default function QuantitySelector({stock,initial,onAdd}) {
+export default function QuantitySelector({stock,initial,onAdd,item}) {
     const [counter, setCounter] = useState(initial);
 
     const add = () => {
@@ -21,7 +22,7 @@ export default function QuantitySelector({stock,initial,onAdd}) {
             <button onClick={add}>+</button>
             <p>{counter}</p>
             <button onClick={deduct}>-</button>
-            <button onClick={()=>onAdd(counter, stock)}>Añadir al carrito</button>
+            <button onClick={()=>onAdd({...item,quantity:counter})}>Añadir al carrito</button>
         </div>
     )
 }

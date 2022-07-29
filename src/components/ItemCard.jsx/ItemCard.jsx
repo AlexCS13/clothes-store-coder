@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import './ItemCard.css'
 import QuantitySelector from "../QuantitySelector/QuantitySelector";
+import { CartContext } from "../CartContext/CartContext";
 
 export default function ItemCard({ item }) {
-    const [addCart, setAddCart] = useState([]);
+    const cartItems = useContext(CartContext)
 
-    const onAdd = (counter, stock) =>{
-        if (stock>0){
-            setAddCart(addCart[addCart.length] = counter);
-        }
-        console.log(addCart)
+    const onAdd = (item) =>{
+        cartItems.addToCart(item)
     }
 
     return(
@@ -20,10 +18,9 @@ export default function ItemCard({ item }) {
                     <img src={item.image} alt={item.id}/>
                     <h4>{item.title}</h4>
                     <h5>{item.price}</h5>
-                    <h2>{addCart}</h2>
                 </div>
             </Link>
-            <QuantitySelector stock={5} initial={1} onAdd={onAdd}/>
+            <QuantitySelector item={item} stock={5} initial={0} onAdd={onAdd}/>
         </div>
     )
 }

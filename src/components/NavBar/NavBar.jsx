@@ -8,17 +8,16 @@ export default function NavBar() {
     return(
         <div className="navbar">
             <ul>
-                {
-                    navbarItems.map((item, index) => {
-                        return(
-                            <li key={index}>
-                                <Link to='/'>
-                                    {item}
-                                </Link>
-                            </li>
-                        )
-                    })
-                }
+                <li>
+                    <Link to="/">
+                        Home
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/cart">
+                        Cart
+                    </Link>
+                </li>
             </ul>
         </div>
     )

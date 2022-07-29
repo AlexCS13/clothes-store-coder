@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
 import { fetchByItemId } from "../../utils/fetchByItemId"
+import QuantitySelector from "../QuantitySelector/QuantitySelector"
 
 export default function ItemDetail() {
 
@@ -28,6 +29,7 @@ export default function ItemDetail() {
                     <p>Category: {item.category}</p>
                 </Link>
                 <p>Price: {item.price}</p>
+                {/* <QuantitySelector stock={5} initial={0} onAdd={onAdd}/> */}
             </div>
         </div>
     )
