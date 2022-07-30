@@ -5,10 +5,10 @@ import QuantitySelector from "../QuantitySelector/QuantitySelector";
 import { CartContext } from "../CartContext/CartContext";
 
 export default function ItemCard({ item }) {
-    const cartItems = useContext(CartContext)
+    const { addToCart, cartlist } = useContext(CartContext)
 
     const onAdd = (item) =>{
-        cartItems.addToCart(item)
+        addToCart(item)
     }
 
     return(

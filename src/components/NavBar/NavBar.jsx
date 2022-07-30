@@ -1,9 +1,10 @@
+import { useContext } from "react"
 import { Link } from "react-router-dom"
+import { CartContext } from "../CartContext/CartContext"
 import './NavBar.css'
 
 export default function NavBar() {
-
-    const navbarItems = ["Home", "Cart"]
+    const { cartList } = useContext(CartContext)
 
     return(
         <div className="navbar">
@@ -15,7 +16,7 @@ export default function NavBar() {
                 </li>
                 <li>
                     <Link to="/cart">
-                        Cart
+                        <span>Cart </span>{cartList.length ? <span>{ cartList.length } item(s)</span> : null }
                     </Link>
                 </li>
             </ul>
