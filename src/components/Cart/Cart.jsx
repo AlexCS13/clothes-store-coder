@@ -3,12 +3,19 @@ import { Link } from 'react-router-dom'
 import { CartContext } from '../CartContext/CartContext'
 
 export default function Cart() {
-    const { cartList } = useContext(CartContext)
+    const { cartList, removeItem } = useContext(CartContext)
 
     return (
         cartList.length
         ? (
-            <div>{JSON.stringify(cartList)}</div>
+            cartList.map(item => {
+                return(
+                    <div>
+                        <div>{JSON.stringify(item)}</div>
+                        <button onClick={removeItem(item.id)}>x</button>
+                    </div>
+                )
+            })
         )
         : (
             <div className="empty-cart">
