@@ -1,19 +1,20 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
 import { fetchByItemId } from "../../utils/fetchByItemId"
+import { CartContext } from "../CartContext/CartContext"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
 
 export default function ItemDetail() {
 
     const {itemId} = useParams()
-
+    const {addToCart, cartList} = useContext(CartContext)
     const [item, setItem] = useState([])
 
     useEffect(() => {
         fetchByItemId(itemId)
             .then(item => setItem(item[0]))
-            .catch(err => console.log(err))
+            .catch(err => console.error(err))
     }, [])
 
     return(
@@ -29,7 +30,11 @@ export default function ItemDetail() {
                     <p>Category: {item.category}</p>
                 </Link>
                 <p>Price: {item.price}</p>
-                {/* <QuantitySelector stock={5} initial={0} onAdd={onAdd}/> */}
+                {
+                    cartList.length
+                    ? <Link to={"/cart"}>Go to cart</Link>
+                    : <QuantitySelector item={item} stock={5} initial={0} onAdd={addToCart}/>
+                }
             </div>
         </div>
     )

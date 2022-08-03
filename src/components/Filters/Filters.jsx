@@ -16,7 +16,7 @@ export default function Filters() {
     useEffect(() => {
         fetchAll()
             .then(data => getCategories(data))
-            .catch(err => console.log(err))
+            .catch(err => console.error(err))
     },[])
 
     return(
@@ -25,7 +25,7 @@ export default function Filters() {
             {
                 categories.map(category => {
                         return (
-                            <Link to={`/category/${category}`}>
+                            <Link to={`/category/${category}`} key={category}>
                                 <p>{category}</p>
                             </Link>
                         )

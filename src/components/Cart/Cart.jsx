@@ -1,21 +1,48 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../CartContext/CartContext'
 
 export default function Cart() {
-    const { cartList, removeItem } = useContext(CartContext)
+    const { cartList, removeItem, clearCart} = useContext(CartContext)
+    const [totalCart, setTotalCart] = useState(0)
+    const calculateTotalCart = () => {
+        let total = 0;
+        cartList.forEach(item => {
+            total += item.price * item.quantity
+        })
+        setTotalCart(total)
+    }
+    useEffect(() => {
+        calculateTotalCart()
+    },[cartList])
 
     return (
         cartList.length
         ? (
-            cartList.map(item => {
-                return(
-                    <div>
-                        <div>{JSON.stringify(item)}</div>
-                        <button onClick={removeItem(item.id)}>x</button>
-                    </div>
-                )
-            })
+            <div>
+                {
+                    cartList.map(item => {
+                        return(
+                            <div key={item.id}>
+                                <div>
+                                    <img src={item.image} alt={item.name} />
+                                </div>
+                                <h3>{item.title}</h3>
+                                <p>${item.price}/piece</p>
+                                <p>quantity: {item.quantity}</p>
+                                <p>{item.price*item.quantity}</p>
+                                <button onClick={() => removeItem(item.id)}>x</button>
+                            </div>
+                        )
+                    })
+                }
+                <hr/>
+                <div>
+                    <h1>Total Cart: ${totalCart}</h1>
+                    <button onClick={() => clearCart()}>Empty Cart</button>
+                    <button>CHECKOUT</button>
+                </div>
+            </div>
         )
         : (
             <div className="empty-cart">

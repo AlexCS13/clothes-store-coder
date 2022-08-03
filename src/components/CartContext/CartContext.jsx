@@ -6,10 +6,8 @@ export const CartContextProvider = ({ children }) => {
     const [cartList, setCartList] = useState([]);
 
     const addToCart = (item) => {
-        console.log("addCart", item.id)
         if (isInCart(item.id)) {
             setCartList(cartList.map( cartItem => {
-                console.log(cartItem.id, item.id)
                 if (cartItem.id === item.id) {
                     return{
                         ...cartItem,
@@ -37,7 +35,6 @@ export const CartContextProvider = ({ children }) => {
 
     const isInCart = (id) => {
         for (let item in cartList) {
-            console.log(item)
             if(cartList[item].id === id){
                 return true
             }

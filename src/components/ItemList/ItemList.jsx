@@ -21,7 +21,7 @@ export default function ItemList() {
             return(
                 await fetchByCategory(categoryId)
                     .then(data => setItemList(data))
-                    .catch(err => console.log(err))
+                    .catch(err => console.error(err))
             )
         } else {
             return (

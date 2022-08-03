@@ -5,11 +5,7 @@ import QuantitySelector from "../QuantitySelector/QuantitySelector";
 import { CartContext } from "../CartContext/CartContext";
 
 export default function ItemCard({ item }) {
-    const { addToCart, cartlist } = useContext(CartContext)
-
-    const onAdd = (item) =>{
-        addToCart(item)
-    }
+    const { addToCart } = useContext(CartContext)
 
     return(
         <div className="item-card">
@@ -20,7 +16,7 @@ export default function ItemCard({ item }) {
                     <h5>{item.price}</h5>
                 </div>
             </Link>
-            <QuantitySelector item={item} stock={5} initial={0} onAdd={onAdd}/>
+            <QuantitySelector item={item} stock={5} initial={0} onAdd={addToCart}/>
         </div>
     )
 }
