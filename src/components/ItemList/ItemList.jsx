@@ -1,8 +1,8 @@
+import { collection, getDocs } from "firebase/firestore"
 import { useEffect } from "react"
 import { useState } from "react"
 import {useParams} from "react-router-dom"
-import { fetchAll } from "../../utils/fetchAll"
-import { fetchByCategory } from "../../utils/fetchByCategory"
+import { db } from "../../utils/firebaseConfig"
 import Filters from "../Filters/Filters"
 import ItemCard from "../ItemCard.jsx/ItemCard"
 import './ItemList.css'
@@ -16,19 +16,16 @@ export default function ItemList() {
 
     const fetchData = async () => {
         const url = window.location.href
+        const firebaseData = await getDocs(collection(db, "products"))
+        const newData = []
+        firebaseData.forEach (async item => {
+            newData.push ({...item.data(), id:item.id})
+        })
 
         if (url.includes("category")) {
-            return(
-                await fetchByCategory(categoryId)
-                    .then(data => setItemList(data))
-                    .catch(err => console.error(err))
-            )
+            setItemList(newData.filter(item => item.category === categoryId))
         } else {
-            return (
-                await fetchAll()
-                .then(data => setItemList(data))
-                .catch(err => console.error(err))
-            )
+            setItemList(newData)
         }
     }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { fetchAll } from "../../utils/fetchAll"
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "../../utils/firebaseConfig"
 
 
 export default function Filters() {
@@ -9,14 +10,19 @@ export default function Filters() {
 
     const getCategories = (data) => {
         const categories = data.map(item => item.category)
-            // .filter((item,index) => categories.indexOf(item) === index);
         setCategories(categories.filter((item,index) => categories.indexOf(item) === index))
     }
 
-    useEffect(() => {
-        fetchAll()
-            .then(data => getCategories(data))
-            .catch(err => console.error(err))
+    useEffect( () => {
+        const fetchData = async () => {
+            const firebaseData = await getDocs(collection(db, "products"))
+            const newData = []
+            firebaseData.forEach (async item => {
+                newData.push (item.data())
+            })
+            getCategories(newData)
+        }
+        fetchData()
     },[])
 
     return(
