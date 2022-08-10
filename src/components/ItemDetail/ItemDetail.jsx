@@ -1,32 +1,11 @@
-import { useContext, useState } from "react"
-import { useEffect } from "react"
-import { Link, useParams } from "react-router-dom"
-import { CartContext } from "../CartContext/CartContext"
+import React, {useContext} from "react"
+import { Link } from "react-router-dom"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
-import { collection, getDocs } from "firebase/firestore"
-import { db } from "../../utils/firebaseConfig"
+import { CartContext } from "../CartContext/CartContext"
 
-export default function ItemDetail() {
+export default function ItemDetail({ item }) {
 
-    const {itemId} = useParams()
     const {addToCart, cartList} = useContext(CartContext)
-    const [item, setItem] = useState([])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const firebaseData = await getDocs(collection(db, "products"))
-            const newData = []
-            firebaseData.forEach (async item => {
-                newData.push ({...item.data(), id:item.id})
-            })
-            setItem(newData.filter(item => {
-                console.log(item.id === itemId, item.id, itemId)
-                return item.id === itemId}))
-                console.log(item)
-        }
-        fetchData()
-
-    }, [])
 
     return(
         item.length

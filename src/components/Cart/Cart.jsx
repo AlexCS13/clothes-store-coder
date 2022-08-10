@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../CartContext/CartContext'
+import { order } from '../Checkout/Checkout'
 
 export default function Cart() {
-    const { cartList, removeItem, clearCart} = useContext(CartContext)
-    const [totalCart, setTotalCart] = useState(0)
+    const { cartList, removeItem, clearCart } = useContext(CartContext)
+    const [ totalCart, setTotalCart ] = useState(0)
     const calculateTotalCart = () => {
         let total = 0;
         cartList.forEach(item => {
@@ -40,7 +41,7 @@ export default function Cart() {
                 <div>
                     <h1>Total Cart: ${totalCart}</h1>
                     <button onClick={() => clearCart()}>Empty Cart</button>
-                    <button>CHECKOUT</button>
+                    <button onClick={() => order()}>CHECKOUT</button>
                 </div>
             </div>
         )

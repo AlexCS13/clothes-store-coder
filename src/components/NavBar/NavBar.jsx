@@ -19,6 +19,21 @@ export default function NavBar() {
                         <span>Cart </span>{cartList.length ? <span>{ cartList.length } item(s)</span> : null }
                     </Link>
                 </li>
+                <li>
+                    <Link to="/men's clothing">
+                    Men's clothing
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/jewelery">
+                        Jewelery
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/electronics">
+                        Electronics
+                    </Link>
+                </li>
             </ul>
         </div>
     )
