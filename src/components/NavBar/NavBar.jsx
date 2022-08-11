@@ -20,17 +20,17 @@ export default function NavBar() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/men's clothing">
+                    <Link to="/category/men's clothing">
                     Men's clothing
                     </Link>
                 </li>
                 <li>
-                    <Link to="/jewelery">
+                    <Link to="/category/jewelery">
                         Jewelery
                     </Link>
                 </li>
                 <li>
-                    <Link to="/electronics">
+                    <Link to="/category/electronics">
                         Electronics
                     </Link>
                 </li>

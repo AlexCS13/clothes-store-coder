@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDoc, doc } from "firebase/firestore";
 
 
 // Your web app's Firebase configuration
@@ -16,4 +16,20 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const firebaseData = getDocs(collection(db, "products"))
+export const firebaseData = collection(db, "products")
+
+//get one item
+export const FetchOne = async (idItem) => {
+    const docRef = doc(db, "products", idItem);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        let result = {
+        id: idItem,
+        ...docSnap.data(),
+        };
+        return result;
+    } else {
+        console.log("No such document!");
+    }
+};

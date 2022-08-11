@@ -13,9 +13,12 @@ export default function Cart() {
         })
         setTotalCart(total)
     }
+
     useEffect(() => {
         calculateTotalCart()
+
     },[cartList])
+
 
     return (
         cartList.length

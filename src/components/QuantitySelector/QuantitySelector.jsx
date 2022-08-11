@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ItemCard from "../ItemCard.jsx/ItemCard";
 import "./QuantitySelector.css"
 
 export default function QuantitySelector({stock,initial,onAdd,item}) {
