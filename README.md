@@ -1,3 +1,4 @@
-Proyecto de react con el fin de aprender a usar la libreria y javascript
-REACT
-FIREBASE
+CLOTHES - STORE
+
+Project made with JAVASCRIPT, FIREBASE & REACT.
+I don´t use CSS because this project is just for academic purposes
